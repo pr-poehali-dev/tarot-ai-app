@@ -4,35 +4,39 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 252 47% 6%;
+    --foreground: 40 30% 92%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 252 40% 10%;
+    --card-foreground: 40 30% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 252 44% 8%;
+    --popover-foreground: 40 30% 92%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 42 65% 60%;
+    --primary-foreground: 252 47% 6%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 260 35% 18%;
+    --secondary-foreground: 40 30% 92%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 258 30% 16%;
+    --muted-foreground: 250 15% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 270 50% 30%;
+    --accent-foreground: 40 30% 92%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 40 30% 92%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 260 30% 20%;
+    --input: 260 30% 20%;
+    --ring: 42 65% 60%;
 
-    --radius: 0.5rem;
+    --gold: 42 70% 62%;
+    --gold-muted: 42 35% 45%;
+    --cosmos: 252 47% 6%;
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -96,6 +100,78 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -10%,
+        hsl(270 60% 25% / 0.5),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 90% 30%,
+        hsl(280 50% 20% / 0.4),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 10% 70%,
+        hsl(250 55% 18% / 0.4),
+        transparent
+      );
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Cormorant Garamond", serif;
+  }
+  .text-gold-gradient {
+    background: linear-gradient(
+      120deg,
+      hsl(42 80% 70%),
+      hsl(38 60% 50%),
+      hsl(45 90% 75%)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .gold-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(42 50% 50%),
+      hsl(45 95% 80%),
+      hsl(42 50% 50%)
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .glass {
+    background: hsl(252 40% 12% / 0.55);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(42 50% 60% / 0.18);
+  }
+  .card-back {
+    background:
+      radial-gradient(
+        circle at 50% 35%,
+        hsl(42 70% 55% / 0.25),
+        transparent 60%
+      ),
+      linear-gradient(160deg, hsl(260 45% 16%), hsl(252 50% 9%));
+    border: 1px solid hsl(42 60% 55% / 0.35);
+  }
+  .glow-gold {
+    box-shadow:
+      0 0 40px hsl(42 70% 55% / 0.25),
+      0 0 80px hsl(270 60% 40% / 0.2);
+  }
+  .star {
+    position: absolute;
+    background: hsl(45 80% 85%);
+    border-radius: 50%;
+    pointer-events: none;
   }
 }
