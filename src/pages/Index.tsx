@@ -2,22 +2,34 @@ import { useState, useMemo } from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 
-const CARD_BACK = 'https://cdn.poehali.dev/projects/7823b243-974a-49d8-a9bf-5cbea3630c31/files/f092498a-ec3e-42a4-9635-2f95708e4e1b.jpg';
+/* ═══════════════════════════════════════════════════════════
+   ВАШИ ИЗОБРАЖЕНИЯ — просто вставьте сюда ссылки на свои картинки.
+   Оставьте пустую строку '' чтобы использовать оформление по умолчанию.
+   ═══════════════════════════════════════════════════════════ */
+const IMAGES = {
+  logo: '',        // Логотип (вместо иконки луны) — квадратное изображение
+  cardBack: '',    // Рубашка карт Таро — вертикальная картинка 2:3
+  background: '',  // Фоновое изображение всего приложения
+};
+
+const DEFAULT_CARD_BACK = 'https://cdn.poehali.dev/projects/7823b243-974a-49d8-a9bf-5cbea3630c31/files/f092498a-ec3e-42a4-9635-2f95708e4e1b.jpg';
+const CARD_BACK = IMAGES.cardBack || DEFAULT_CARD_BACK;
 
 type TarotCard = {
   name: string;
   arcana: string;
   meaning: string;
   reading: string;
+  image?: string; // ← вставьте сюда ссылку на свою иллюстрацию карты
 };
 
 const DECK: TarotCard[] = [
-  { name: 'Звезда', arcana: 'XVII Старший Аркан', meaning: 'Надежда, вдохновение, обновление', reading: 'Перед вами открывается период исцеления и веры в будущее. Вселенная посылает знак, что путь, который вы выбрали, верен. Доверьтесь интуиции — она ведёт к свету.' },
-  { name: 'Маг', arcana: 'I Старший Аркан', meaning: 'Воля, мастерство, начало', reading: 'У вас есть все инструменты для воплощения замысла. Сейчас момент силы — действуйте смело. Энергия творения течёт через вас, превращая идеи в реальность.' },
-  { name: 'Луна', arcana: 'XVIII Старший Аркан', meaning: 'Тайны, интуиция, иллюзии', reading: 'Не всё то, чем кажется. Прислушайтесь к снам и предчувствиям — подсознание раскрывает скрытую правду. Доверьтесь внутреннему голосу сквозь туман неопределённости.' },
-  { name: 'Солнце', arcana: 'XIX Старший Аркан', meaning: 'Радость, успех, ясность', reading: 'Тёплый свет озаряет вашу жизнь. Это карта чистого счастья, признания и жизненной силы. Впереди — триумф и гармония во всех начинаниях.' },
-  { name: 'Колесо Фортуны', arcana: 'X Старший Аркан', meaning: 'Перемены, судьба, циклы', reading: 'Колесо судьбы поворачивается в вашу пользу. Грядут перемены, которые откроют новые возможности. Примите поток жизни — удача на вашей стороне.' },
-  { name: 'Влюблённые', arcana: 'VI Старший Аркан', meaning: 'Любовь, выбор, союз', reading: 'Перед вами важный выбор сердца. Гармония отношений и глубокая связь становятся доступны. Следуйте за тем, что заставляет душу резонировать.' },
+  { name: 'Звезда', arcana: 'XVII Старший Аркан', meaning: 'Надежда, вдохновение, обновление', reading: 'Перед вами открывается период исцеления и веры в будущее. Вселенная посылает знак, что путь, который вы выбрали, верен. Доверьтесь интуиции — она ведёт к свету.', image: '' },
+  { name: 'Маг', arcana: 'I Старший Аркан', meaning: 'Воля, мастерство, начало', reading: 'У вас есть все инструменты для воплощения замысла. Сейчас момент силы — действуйте смело. Энергия творения течёт через вас, превращая идеи в реальность.', image: '' },
+  { name: 'Луна', arcana: 'XVIII Старший Аркан', meaning: 'Тайны, интуиция, иллюзии', reading: 'Не всё то, чем кажется. Прислушайтесь к снам и предчувствиям — подсознание раскрывает скрытую правду. Доверьтесь внутреннему голосу сквозь туман неопределённости.', image: '' },
+  { name: 'Солнце', arcana: 'XIX Старший Аркан', meaning: 'Радость, успех, ясность', reading: 'Тёплый свет озаряет вашу жизнь. Это карта чистого счастья, признания и жизненной силы. Впереди — триумф и гармония во всех начинаниях.', image: '' },
+  { name: 'Колесо Фортуны', arcana: 'X Старший Аркан', meaning: 'Перемены, судьба, циклы', reading: 'Колесо судьбы поворачивается в вашу пользу. Грядут перемены, которые откроют новые возможности. Примите поток жизни — удача на вашей стороне.', image: '' },
+  { name: 'Влюблённые', arcana: 'VI Старший Аркан', meaning: 'Любовь, выбор, союз', reading: 'Перед вами важный выбор сердца. Гармония отношений и глубокая связь становятся доступны. Следуйте за тем, что заставляет душу резонировать.', image: '' },
 ];
 
 const FEATURES = [
@@ -84,12 +96,23 @@ export default function Index() {
 
   return (
     <div className="relative min-h-screen text-foreground overflow-x-hidden">
+      {/* Своё фоновое изображение (если задано в IMAGES.background) */}
+      {IMAGES.background && (
+        <div
+          className="fixed inset-0 z-0 bg-cover bg-center opacity-40 pointer-events-none"
+          style={{ backgroundImage: `url(${IMAGES.background})` }}
+        />
+      )}
       <StarField />
 
       {/* NAV */}
       <header className="relative z-20 flex items-center justify-between px-6 md:px-12 py-6">
         <div className="flex items-center gap-2">
-          <Icon name="Moon" className="text-gold" size={26} />
+          {IMAGES.logo ? (
+            <img src={IMAGES.logo} alt="Логотип" className="w-8 h-8 rounded-lg object-cover" />
+          ) : (
+            <Icon name="Moon" className="text-gold" size={26} />
+          )}
           <span className="font-display text-2xl font-semibold tracking-wide gold-shimmer">Аркана</span>
         </div>
         <nav className="hidden md:flex items-center gap-7">
@@ -143,13 +166,23 @@ export default function Index() {
             style={{ transformStyle: 'preserve-3d' }}
           >
             {drawn ? (
-              <div className="w-full h-full card-back flex flex-col items-center justify-center p-6 text-center">
-                <Icon name="Star" className="text-gold mb-4 animate-glow-pulse" size={40} />
-                <h3 className="font-display text-3xl font-semibold text-gold-gradient">{drawn.name}</h3>
-                <p className="text-[11px] tracking-widest uppercase text-muted-foreground mt-2">{drawn.arcana}</p>
-                <div className="w-12 h-px bg-gold/40 my-4" />
-                <p className="text-foreground/80 italic font-display text-lg leading-snug">{drawn.meaning}</p>
-              </div>
+              drawn.image ? (
+                <div className="w-full h-full relative">
+                  <img src={drawn.image} alt={drawn.name} className="w-full h-full object-cover" />
+                  <div className="absolute inset-x-0 bottom-0 p-4 text-center bg-gradient-to-t from-black/70 to-transparent">
+                    <h3 className="font-display text-2xl font-semibold text-white">{drawn.name}</h3>
+                    <p className="text-[10px] tracking-widest uppercase text-white/70">{drawn.arcana}</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="w-full h-full card-back flex flex-col items-center justify-center p-6 text-center">
+                  <Icon name="Star" className="text-primary mb-4 animate-glow-pulse" size={40} />
+                  <h3 className="font-display text-3xl font-semibold text-gold-gradient">{drawn.name}</h3>
+                  <p className="text-[11px] tracking-widest uppercase text-muted-foreground mt-2">{drawn.arcana}</p>
+                  <div className="w-12 h-px bg-primary/40 my-4" />
+                  <p className="text-foreground/70 italic font-display text-lg leading-snug">{drawn.meaning}</p>
+                </div>
+              )
             ) : (
               <img src={CARD_BACK} alt="Карта Таро" className="w-full h-full object-cover" />
             )}

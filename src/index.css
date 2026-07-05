@@ -4,39 +4,39 @@
 
 @layer base {
   :root {
-    --background: 252 47% 6%;
-    --foreground: 40 30% 92%;
+    --background: 36 44% 96%;
+    --foreground: 262 22% 26%;
 
-    --card: 252 40% 10%;
-    --card-foreground: 40 30% 92%;
+    --card: 40 55% 99%;
+    --card-foreground: 262 22% 26%;
 
-    --popover: 252 44% 8%;
-    --popover-foreground: 40 30% 92%;
+    --popover: 40 55% 99%;
+    --popover-foreground: 262 22% 26%;
 
-    --primary: 42 65% 60%;
-    --primary-foreground: 252 47% 6%;
+    --primary: 268 34% 60%;
+    --primary-foreground: 40 55% 99%;
 
-    --secondary: 260 35% 18%;
-    --secondary-foreground: 40 30% 92%;
+    --secondary: 30 42% 92%;
+    --secondary-foreground: 262 22% 32%;
 
-    --muted: 258 30% 16%;
-    --muted-foreground: 250 15% 65%;
+    --muted: 32 36% 91%;
+    --muted-foreground: 262 12% 50%;
 
-    --accent: 270 50% 30%;
-    --accent-foreground: 40 30% 92%;
+    --accent: 18 62% 82%;
+    --accent-foreground: 262 24% 28%;
 
-    --destructive: 0 70% 45%;
-    --destructive-foreground: 40 30% 92%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 40 55% 99%;
 
-    --border: 260 30% 20%;
-    --input: 260 30% 20%;
-    --ring: 42 65% 60%;
+    --border: 30 32% 87%;
+    --input: 30 32% 87%;
+    --ring: 268 34% 60%;
 
-    --gold: 42 70% 62%;
-    --gold-muted: 42 35% 45%;
-    --cosmos: 252 47% 6%;
+    --gold: 32 68% 60%;
+    --gold-muted: 32 42% 55%;
+    --cosmos: 36 44% 96%;
 
-    --radius: 0.75rem;
+    --radius: 1.1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -104,17 +104,17 @@
     background-image:
       radial-gradient(
         ellipse 80% 50% at 50% -10%,
-        hsl(270 60% 25% / 0.5),
+        hsl(268 60% 88% / 0.6),
         transparent
       ),
       radial-gradient(
-        ellipse 60% 50% at 90% 30%,
-        hsl(280 50% 20% / 0.4),
+        ellipse 60% 50% at 90% 20%,
+        hsl(18 80% 88% / 0.5),
         transparent
       ),
       radial-gradient(
-        ellipse 60% 50% at 10% 70%,
-        hsl(250 55% 18% / 0.4),
+        ellipse 60% 50% at 5% 75%,
+        hsl(200 60% 88% / 0.45),
         transparent
       );
     background-attachment: fixed;
@@ -128,9 +128,9 @@
   .text-gold-gradient {
     background: linear-gradient(
       120deg,
-      hsl(42 80% 70%),
-      hsl(38 60% 50%),
-      hsl(45 90% 75%)
+      hsl(268 40% 58%),
+      hsl(18 65% 62%),
+      hsl(300 35% 60%)
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -139,9 +139,9 @@
   .gold-shimmer {
     background: linear-gradient(
       90deg,
-      hsl(42 50% 50%),
-      hsl(45 95% 80%),
-      hsl(42 50% 50%)
+      hsl(268 38% 58%),
+      hsl(18 70% 66%),
+      hsl(268 38% 58%)
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
@@ -149,28 +149,28 @@
     -webkit-text-fill-color: transparent;
   }
   .glass {
-    background: hsl(252 40% 12% / 0.55);
+    background: hsl(40 55% 99% / 0.7);
     backdrop-filter: blur(16px);
-    border: 1px solid hsl(42 50% 60% / 0.18);
+    border: 1px solid hsl(268 40% 70% / 0.2);
   }
   .card-back {
     background:
       radial-gradient(
         circle at 50% 35%,
-        hsl(42 70% 55% / 0.25),
+        hsl(18 70% 85% / 0.6),
         transparent 60%
       ),
-      linear-gradient(160deg, hsl(260 45% 16%), hsl(252 50% 9%));
-    border: 1px solid hsl(42 60% 55% / 0.35);
+      linear-gradient(160deg, hsl(268 45% 92%), hsl(30 50% 96%));
+    border: 1px solid hsl(268 40% 70% / 0.35);
   }
   .glow-gold {
     box-shadow:
-      0 0 40px hsl(42 70% 55% / 0.25),
-      0 0 80px hsl(270 60% 40% / 0.2);
+      0 10px 40px hsl(268 40% 60% / 0.18),
+      0 4px 60px hsl(18 60% 65% / 0.15);
   }
   .star {
     position: absolute;
-    background: hsl(45 80% 85%);
+    background: hsl(268 45% 65%);
     border-radius: 50%;
     pointer-events: none;
   }
