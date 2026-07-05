@@ -41,8 +41,7 @@ const FEATURES = [
 
 const PLANS = [
   { name: 'Странник', price: '0', period: 'навсегда', features: ['3 гадания в день', 'Базовая расшифровка', 'Карта дня'], cta: 'Начать бесплатно', highlight: false },
-  { name: 'Мистик', price: '490', period: 'в месяц', features: ['Безлимитные гадания', 'Глубокая ИИ-расшифровка', 'Все виды раскладов', 'История без ограничений', 'Без рекламы'], cta: 'Раскрыть тайны', highlight: true },
-  { name: 'Оракул', price: '3 900', period: 'в год', features: ['Всё из Мистика', 'Персональный гороскоп', 'Приоритетные ответы ИИ', 'Эксклюзивные колоды', 'Экономия 35%'], cta: 'Стать Оракулом', highlight: false },
+  { name: 'Мистик', price: '400', period: 'в месяц', features: ['Безлимитные гадания', 'Глубокая ИИ-расшифровка', 'Все виды раскладов', 'История без ограничений', 'Без рекламы'], cta: 'Раскрыть тайны', highlight: true },
 ];
 
 const NAV = ['Главная', 'Гадание', 'Справочник', 'История', 'Кабинет', 'Об авторе'];
@@ -233,7 +232,7 @@ export default function Index() {
           <h2 className="font-display text-4xl md:text-5xl font-semibold">Выбери свой путь</h2>
           <p className="text-muted-foreground mt-4 max-w-md mx-auto">Безлимитные гадания и премиум-расшифровки для тех, кто ищет глубже.</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6 items-start">
+        <div className="grid sm:grid-cols-2 gap-6 items-start max-w-2xl mx-auto">
           {PLANS.map((plan) => (
             <div
               key={plan.name}
